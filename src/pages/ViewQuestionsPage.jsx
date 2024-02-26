@@ -139,7 +139,7 @@ const ViewQuestionsPage = ({ questions, setQuestions }) => {
         style={{
           padding: "20px",
           margin: "20px",
-          maxWidth: "1000px",
+          maxWidth: "800px",
           width: "100%",
           height: "100%",
         }}
@@ -152,7 +152,7 @@ const ViewQuestionsPage = ({ questions, setQuestions }) => {
           onChange={(e) => setNumQuestionsNeeded(e.target.value)}
           fullWidth
           margin="normal"
-          sx={{ width: "1000px" }}
+          sx={{ width: "800px" }}
         />
 
         <div>

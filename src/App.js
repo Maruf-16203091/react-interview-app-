@@ -10,14 +10,8 @@ const App = () => {
   return (
     <div>
       <Routes>
-        <Route
-          path="/"
-          element={<SetQuestionsPage setQuestions={setQuestions} />}
-        />
-        <Route
-          path="/view"
-          element={<ViewQuestionsPage questions={questions} />}
-        />
+        <Route path="/" element={<SetQuestionsPage />} />
+        <Route path="/view" element={<ViewQuestionsPage />} />
         <Route path="/edit" element={<EditQuestionsPage />} />
       </Routes>
     </div>
