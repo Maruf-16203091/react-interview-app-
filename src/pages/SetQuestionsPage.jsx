@@ -1,38 +1,30 @@
 // SetQuestionsPage.js
-import React, { useState, useEffect } from 'react';
-import { TextField, Button } from '@mui/material';
+import React, { useState } from 'react';
+import { TextField, Button, Typography } from '@mui/material';
 
 const SetQuestionsPage = () => {
   const [keywords, setKeywords] = useState('');
-  const [numQuestions, setNumQuestions] = useState(0);
+  const [question, setQuestion] = useState('');
   const [questions, setQuestions] = useState([]);
 
-  // Load questions from local storage on initial render
-  useEffect(() => {
-    const savedQuestions = localStorage.getItem('questions');
-    if (savedQuestions) {
-      setQuestions(JSON.parse(savedQuestions));
+  const handleAddQuestion = () => {
+    if (question.trim() !== '') {
+      setQuestions(prevQuestions => [...prevQuestions, { question: question.trim(), keywords: keywords.split(',').map(keyword => keyword.trim()) }]);
+      setQuestion('');
+      setKeywords('');
     }
-  }, []);
-
-  // Save questions to local storage whenever questions state changes
-  useEffect(() => {
-    localStorage.setItem('questions', JSON.stringify(questions));
-  }, [questions]);
-
-  const handleSetQuestions = () => {
-    const newQuestions = Array.from({ length: numQuestions }, (_, index) => ({
-      id: index + 1,
-      question: `Question ${index + 1}`,
-      keywords: keywords.split(',').map(keyword => keyword.trim()),
-      grades: { A: false, B: false, C: false }
-    }));
-    setQuestions(newQuestions);
   };
 
   return (
     <div>
       <h1>Set Questions</h1>
+      <TextField
+        label="Question"
+        value={question}
+        onChange={(e) => setQuestion(e.target.value)}
+        fullWidth
+        margin="normal"
+      />
       <TextField
         label="Keywords"
         value={keywords}
@@ -40,25 +32,16 @@ const SetQuestionsPage = () => {
         fullWidth
         margin="normal"
       />
-      <TextField
-        label="Number of Questions"
-        type="number"
-        value={numQuestions}
-        onChange={(e) => setNumQuestions(parseInt(e.target.value))}
-        fullWidth
-        margin="normal"
-      />
-      <Button variant="contained" onClick={handleSetQuestions}>
-        Set Questions
+      <Button variant="contained" onClick={handleAddQuestion}>
+        Add Question
       </Button>
       <div>
-        <h2>Preview Questions:</h2>
+        <Typography variant="h6">Preview Questions:</Typography>
         <ul>
-          {questions.map(({ id, question, keywords, grades }) => (
-            <li key={id}>
-              <strong>Question {id}:</strong> {question}<br />
-              <small>Keywords: {keywords.join(', ')}</small><br />
-              <small>Grades: {Object.keys(grades).filter(grade => grades[grade]).join(', ')}</small>
+          {questions.map((q, index) => (
+            <li key={index}>
+              <strong>Question {index + 1}:</strong> {q.question}<br />
+              <small>Keywords: {q.keywords.join(', ')}</small>
             </li>
           ))}
         </ul>
