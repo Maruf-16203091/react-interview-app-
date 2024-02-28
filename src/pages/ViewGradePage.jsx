@@ -1,6 +1,15 @@
 import React, { useState } from "react";
-import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
-import DeleteIcon from '@mui/icons-material/Delete';
+import {
+  Button,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import Pagination from "@mui/material/Pagination";
 
 const ViewGradePage = () => {
@@ -9,12 +18,48 @@ const ViewGradePage = () => {
 
   // Dummy data for the table
   const dummyData = [
-    { id: 1, name: "John Doe", jobTitle: "Software Engineer", questionsAsked: 10, grade: "A" },
-    { id: 2, name: "Jane Smith", jobTitle: "Web Developer", questionsAsked: 8, grade: "B" },
-    { id: 3, name: "Alice Johnson", jobTitle: "Data Analyst", questionsAsked: 12, grade: "C" },
-    { id: 4, name: "Bob Brown", jobTitle: "UI/UX Designer", questionsAsked: 9, grade: "A" },
-    { id: 5, name: "Emily Davis", jobTitle: "Product Manager", questionsAsked: 11, grade: "B" },
-    { id: 6, name: "Michael Wilson", jobTitle: "Software Developer", questionsAsked: 7, grade: "C" },
+    {
+      id: 1,
+      name: "John Doe",
+      jobTitle: "Software Engineer",
+      questionsAsked: 10,
+      grade: "A",
+    },
+    {
+      id: 2,
+      name: "Jane Smith",
+      jobTitle: "Web Developer",
+      questionsAsked: 8,
+      grade: "B",
+    },
+    {
+      id: 3,
+      name: "Alice Johnson",
+      jobTitle: "Data Analyst",
+      questionsAsked: 12,
+      grade: "C",
+    },
+    {
+      id: 4,
+      name: "Bob Brown",
+      jobTitle: "UI/UX Designer",
+      questionsAsked: 9,
+      grade: "A",
+    },
+    {
+      id: 5,
+      name: "Emily Davis",
+      jobTitle: "Product Manager",
+      questionsAsked: 11,
+      grade: "B",
+    },
+    {
+      id: 6,
+      name: "Michael Wilson",
+      jobTitle: "Software Developer",
+      questionsAsked: 7,
+      grade: "C",
+    },
     // Add more dummy data as needed
   ];
 
@@ -36,19 +81,34 @@ const ViewGradePage = () => {
 
   return (
     <div style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
-      <Typography variant="h4" style={{ color: "#3f51b5", marginBottom: "20px" }}>
+      <Typography
+        variant="h4"
+        style={{ color: "#3f51b5", marginBottom: "20px" }}
+      >
         View Grades
       </Typography>
       <TableContainer>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell>Job Title</TableCell>
-              <TableCell align="center">Questions Asked</TableCell>
-              <TableCell>Grade</TableCell>
-              <TableCell align="center">Download Grade Sheet</TableCell>
-              <TableCell>Action</TableCell>
+              <TableCell>
+                <strong>Name</strong>
+              </TableCell>
+              <TableCell>
+                <strong>Job Title</strong>
+              </TableCell>
+              <TableCell align="center">
+                <strong>Questions Asked</strong>
+              </TableCell>
+              <TableCell>
+                <strong>Grade</strong>
+              </TableCell>
+              <TableCell align="center">
+                <strong>Download Grade Sheet</strong>
+              </TableCell>
+              <TableCell>
+                <strong>Action</strong>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -59,12 +119,21 @@ const ViewGradePage = () => {
                 <TableCell align="center">{row.questionsAsked}</TableCell>
                 <TableCell>{row.grade}</TableCell>
                 <TableCell align="center">
-                  <Button variant="outlined" color="primary">
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    style={{ backgroundColor: "#1976d2", color: "#fff" }}
+                  >
                     Download
                   </Button>
                 </TableCell>
                 <TableCell>
-                  <Button onClick={() => handleDeleteRow(row.id)}><DeleteIcon /></Button>
+                  <Button
+                    onClick={() => handleDeleteRow(row.id)}
+                    style={{ color: "red" }}
+                  >
+                    <DeleteIcon />
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
